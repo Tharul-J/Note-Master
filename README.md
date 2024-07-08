@@ -10,16 +10,16 @@
 ![image](https://github.com/Tharul-J/Note-Master/assets/171511675/d4fb6b38-2785-4e8e-b059-86c3112713da)
 --------------
 
-
-## Application Features
 -------------------------
+## Application Features
+
 
 - **Components Used:** [ `ArrayList`, `Scanner`, `SimpleDateFormat`, `File I/O (BufferedReader, BufferedWriter)` ]
      - ArrayList: Stores the list of tasks dynamically.
      - Scanner: Captures user input from the command line.
      - SimpleDateFormat: Validates the date format for tasks.
      - File I/O (BufferedReader, BufferedWriter): Manages reading from and writing to a text file for task persistence.
-
+-------------------------
   
 - **Functionalities:** [ `Add Task`, `Remove Task`, `Edit Task`, `View All Tasks`, `Filter Tasks by Month` ]
 
@@ -51,16 +51,15 @@
      - New Feature: Allows users to see tasks for a specific month (e.g., MM).
 
 
-
-## Development Experience
 -------------------------
+## Development Experience
 
    - Implemented using Java with a focus on command-line interface (CLI) for user interaction.
    - Faced challenges in validating date inputs and managing file operations for data persistence.
    - Resolved issues through extensive debugging and research on Java’s SimpleDateFormat for date validation and BufferedReader/BufferedWriter for file handling.
 
+-------------------------
 ## Ongoing Future Improvements
-------------------------------
 
    - Enhance User Interface:
           Add more advanced features such as a graphical user interface (GUI) with Java Swing or JavaFX for a more user-friendly experience.
@@ -72,5 +71,4 @@
           Integrate a notification system for upcoming task deadlines or reminders.
 
           
-...............................................................................................................................          
-
+------------------------------------------
