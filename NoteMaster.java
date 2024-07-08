@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -50,7 +49,6 @@ public class NoteMaster {
                     filterTasksByMonth(scanner);
                     break;
                 case "6":
-                    saveTasksToFile();
                     System.out.println("Exiting...");
                     break;
                 default:
@@ -58,6 +56,7 @@ public class NoteMaster {
             }
         } while (!choice.equals("6"));
 
+        saveTasksToFile(); // Save tasks when exiting
         scanner.close();
     }
 
@@ -69,6 +68,7 @@ public class NoteMaster {
         if (!task.isEmpty() && isValidDate(date)) {
             taskList.add(task + " - " + date);
             System.out.println("Task added successfully!\n");
+            saveTasksToFile(); // Save tasks after adding
         } else {
             System.out.println("Invalid task or date. Please try again.\n");
         }
@@ -81,6 +81,7 @@ public class NoteMaster {
         if (index > 0 && index <= taskList.size()) {
             taskList.remove(index - 1);
             System.out.println("Task removed successfully!\n");
+            saveTasksToFile(); // Save tasks after removing
         } else {
             System.out.println("Invalid task number. Please try again.\n");
         }
@@ -100,6 +101,7 @@ public class NoteMaster {
             if (!newTask.isEmpty() && isValidDate(newDate)) {
                 taskList.set(index - 1, newTask + " - " + newDate);
                 System.out.println("Task edited successfully!\n");
+                saveTasksToFile(); // Save tasks after editing
             } else {
                 System.out.println("Invalid task or date. Please try again.\n");
             }
