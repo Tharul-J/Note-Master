@@ -16,19 +16,23 @@ public class NoteMaster {
         Scanner scanner = new Scanner(System.in);
         String choice;
 
-        System.out.println("=================================");
-        System.out.println("          Note Master            ");
-        System.out.println(" --- A simple To-Do List Application By Tharul Jayasundara --- ");
-        System.out.println("=================================\n");
+        System.out.println("===================================================================\n");
+        System.out.println("          ::::::::::::::::: Note Master :::::::::::::::::\n            ");
+        //System.out.println("       - A Simple To-Do List Application For Managing Tasks - \n");
+        System.out.println("===================================================================\n");
 
         do {
+            System.out.println("-----------------------------------------------------------------\n");
+            
             System.out.println("1. Add Task");
             System.out.println("2. Remove Task");
             System.out.println("3. Edit Task");
             System.out.println("4. View All Tasks");
             System.out.println("5. Filter Tasks by Month");
             System.out.println("6. Exit\n");
-            System.out.print("Enter your choice: ");
+
+            System.out.println("-----------------------------------------------------------------\n");
+            System.out.print("- Enter your choice : ");
             choice = scanner.nextLine();
             System.out.println();
 
