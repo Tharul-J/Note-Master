@@ -1,106 +1,110 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class NoteMaster extends JFrame {
-    private JTextField taskTextField;
-    private JTextField dateTextField;
-    private JButton addButton;
-    private JButton removeButton;
-    private JButton editButton;
-    private JButton viewButton;
-    private JList<String> taskList;
-    private DefaultListModel<String> listModel;
+public class NoteMaster {
+    private static ArrayList<String> taskList = new ArrayList<>();
 
-    public NoteMaster() {
-        // Create GUI components
-        taskTextField = new JTextField(20);
-        dateTextField = new JTextField(10);
-        addButton = new JButton("Add Task");
-        removeButton = new JButton("Remove Task");
-        editButton = new JButton("Edit Task");
-        viewButton = new JButton("View All Tasks");
-        listModel = new DefaultListModel<>();
-        taskList = new JList<>(listModel);
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String choice;
 
-        // Add action listener to add button
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String task = taskTextField.getText();
-                String date = dateTextField.getText();
-                if (!task.isEmpty() && isValidDate(date)) {
-                    listModel.addElement(task + " - " + date);
-                    taskTextField.setText("");
-                    dateTextField.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid task and date (yyyy-MM-dd).");
-                }
+        System.out.println("=================================");
+        System.out.println("          Note Master            ");
+        System.out.println(" --- A simple To-Do List Application By Tharul Jayasundara --- ");
+        System.out.println("=================================\n");
+
+        do {
+            System.out.println("1. Add Task");
+            System.out.println("2. Remove Task");
+            System.out.println("3. Edit Task");
+            System.out.println("4. View All Tasks");
+            System.out.println("5. Exit\n");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextLine();
+            System.out.println();
+
+            switch (choice) {
+                case "1":
+                    addTask(scanner);
+                    break;
+                case "2":
+                    removeTask(scanner);
+                    break;
+                case "3":
+                    editTask(scanner);
+                    break;
+                case "4":
+                    viewAllTasks();
+                    break;
+                case "5":
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.\n");
             }
-        });
+        } while (!choice.equals("5"));
 
-        // Add action listener to remove button
-        removeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedIndex = taskList.getSelectedIndex();
-                if (selectedIndex != -1) {
-                    listModel.remove(selectedIndex);
-                }
-            }
-        });
-
-        // Add action listener to edit button
-        editButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedIndex = taskList.getSelectedIndex();
-                if (selectedIndex != -1) {
-                    String selectedTask = listModel.get(selectedIndex);
-                    String[] parts = selectedTask.split(" - ");
-                    String newTask = JOptionPane.showInputDialog("Edit Task", parts[0]);
-                    String newDate = JOptionPane.showInputDialog("Edit Date (yyyy-MM-dd)", parts[1]);
-                    if (newTask != null && !newTask.isEmpty() && isValidDate(newDate)) {
-                        listModel.set(selectedIndex, newTask + " - " + newDate);
-                    }
-                }
-            }
-        });
-
-        // Add action listener to view button
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                StringBuilder tasks = new StringBuilder("All Tasks:\n");
-                for (int i = 0; i < listModel.size(); i++) {
-                    tasks.append(listModel.get(i)).append("\n");
-                }
-                JOptionPane.showMessageDialog(null, tasks.toString());
-            }
-        });
-
-        // Set up the layout
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        add(new JLabel("Task:"));
-        add(taskTextField);
-        add(new JLabel("Date (yyyy-MM-dd):"));
-        add(dateTextField);
-        add(addButton);
-        add(removeButton);
-        add(editButton);
-        add(viewButton);
-        add(new JScrollPane(taskList));
-
-        // Set up the frame
-        setTitle("NoteMaster");
-        setSize(300, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        scanner.close();
     }
 
-    private boolean isValidDate(String date) {
+    private static void addTask(Scanner scanner) {
+        System.out.print("Enter task: ");
+        String task = scanner.nextLine();
+        System.out.print("Enter date (yyyy-MM-dd): ");
+        String date = scanner.nextLine();
+        if (!task.isEmpty() && isValidDate(date)) {
+            taskList.add(task + " - " + date);
+            System.out.println("Task added successfully!\n");
+        } else {
+            System.out.println("Invalid task or date. Please try again.\n");
+        }
+    }
+
+    private static void removeTask(Scanner scanner) {
+        System.out.print("Enter the task number to remove: ");
+        int index = scanner.nextInt();
+        scanner.nextLine(); // consume the newline
+        if (index > 0 && index <= taskList.size()) {
+            taskList.remove(index - 1);
+            System.out.println("Task removed successfully!\n");
+        } else {
+            System.out.println("Invalid task number. Please try again.\n");
+        }
+    }
+
+    private static void editTask(Scanner scanner) {
+        System.out.print("Enter the task number to edit: ");
+        int index = scanner.nextInt();
+        scanner.nextLine(); // consume the newline
+        if (index > 0 && index <= taskList.size()) {
+            String selectedTask = taskList.get(index - 1);
+            String[] parts = selectedTask.split(" - ");
+            System.out.print("Edit task (" + parts[0] + "): ");
+            String newTask = scanner.nextLine();
+            System.out.print("Edit date (" + parts[1] + ") (yyyy-MM-dd): ");
+            String newDate = scanner.nextLine();
+            if (!newTask.isEmpty() && isValidDate(newDate)) {
+                taskList.set(index - 1, newTask + " - " + newDate);
+                System.out.println("Task edited successfully!\n");
+            } else {
+                System.out.println("Invalid task or date. Please try again.\n");
+            }
+        } else {
+            System.out.println("Invalid task number. Please try again.\n");
+        }
+    }
+
+    private static void viewAllTasks() {
+        System.out.println("All Tasks:");
+        System.out.println("==========");
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println((i + 1) + ". " + taskList.get(i));
+        }
+        System.out.println();
+    }
+
+    private static boolean isValidDate(String date) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             format.setLenient(false);
@@ -109,9 +113,5 @@ public class NoteMaster extends JFrame {
         } catch (Exception e) {
             return false;
         }
-    }
-
-    public static void main(String[] args) {
-        new NoteMaster();
     }
 }
