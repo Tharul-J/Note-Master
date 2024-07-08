@@ -1,11 +1,19 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class NoteMaster {
     private static ArrayList<String> taskList = new ArrayList<>();
+    private static final String FILE_NAME = "tasks.txt";
 
     public static void main(String[] args) {
+        loadTasksFromFile();
         Scanner scanner = new Scanner(System.in);
         String choice;
 
@@ -19,7 +27,8 @@ public class NoteMaster {
             System.out.println("2. Remove Task");
             System.out.println("3. Edit Task");
             System.out.println("4. View All Tasks");
-            System.out.println("5. Exit\n");
+            System.out.println("5. Filter Tasks by Month");
+            System.out.println("6. Exit\n");
             System.out.print("Enter your choice: ");
             choice = scanner.nextLine();
             System.out.println();
@@ -38,12 +47,16 @@ public class NoteMaster {
                     viewAllTasks();
                     break;
                 case "5":
+                    filterTasksByMonth(scanner);
+                    break;
+                case "6":
+                    saveTasksToFile();
                     System.out.println("Exiting...");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.\n");
             }
-        } while (!choice.equals("5"));
+        } while (!choice.equals("6"));
 
         scanner.close();
     }
@@ -104,6 +117,19 @@ public class NoteMaster {
         System.out.println();
     }
 
+    private static void filterTasksByMonth(Scanner scanner) {
+        System.out.print("Enter month (MM): ");
+        String month = scanner.nextLine();
+        System.out.println("Tasks for Month: " + month);
+        System.out.println("=====================");
+        for (String task : taskList) {
+            if (task.contains("-" + month + "-")) {
+                System.out.println(task);
+            }
+        }
+        System.out.println();
+    }
+
     private static boolean isValidDate(String date) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -112,6 +138,28 @@ public class NoteMaster {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    private static void loadTasksFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                taskList.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading tasks from file.");
+        }
+    }
+
+    private static void saveTasksToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (String task : taskList) {
+                writer.write(task);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving tasks to file.");
         }
     }
 }
