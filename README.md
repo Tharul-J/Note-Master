@@ -15,6 +15,7 @@
 
 
 - **Components Used:** [ `ArrayList`, `Scanner`, `SimpleDateFormat`, `File I/O (BufferedReader, BufferedWriter)` ]
+  
      - ArrayList: Stores the list of tasks dynamically.
      - Scanner: Captures user input from the command line.
      - SimpleDateFormat: Validates the date format for tasks.
