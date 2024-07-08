@@ -29,6 +29,4 @@
 - Implement data persistence using file or database storage.
 - Add reminders or notifications for tasks nearing their due dates.
 
-## Conclusion
-The NoteMaster application demonstrates fundamental GUI programming skills using Java Swing. It provides essential functionalities for managing tasks and dates effectively.
 
