@@ -12,7 +12,7 @@
 
 -------------------------
 ## Application Features
-
+------------------------
 
 - **Components Used:** [ `ArrayList`, `Scanner`, `SimpleDateFormat`, `File I/O (BufferedReader, BufferedWriter)` ]
   
@@ -52,4 +52,5 @@
      - New Feature: Allows users to see tasks for a specific month (e.g., MM).
 
 
-----------TJ---------------
+-------------------------
+ -------------------------------------------------------------------------< TJ >------------------------------------------------------------------------------
