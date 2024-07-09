@@ -8,9 +8,14 @@
 
 --------------
 ![image](https://github.com/Tharul-J/Note-Master/assets/171511675/47ac32f1-11bd-47c9-a905-a07f14c052ac)
-![image](https://github.com/Tharul-J/Note-Master/assets/171511675/29001ca0-d3bc-4a46-a00a-de3c4313ef85)
+
+-----------
+- **Interface**
+  
+![Screenshot 2024-07-09 095130 1](https://github.com/Tharul-J/Note-Master/assets/171511675/c7fed07b-a87e-40b7-a261-0388a532a0e4)
 
 --------------
+
 
 -------------------------
 ## Application Features
