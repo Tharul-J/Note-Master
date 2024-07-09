@@ -52,24 +52,4 @@
      - New Feature: Allows users to see tasks for a specific month (e.g., MM).
 
 
--------------------------
-## Development Experience
-
-   - Implemented using Java with a focus on command-line interface (CLI) for user interaction.
-   - Faced challenges in validating date inputs and managing file operations for data persistence.
-   - Resolved issues through extensive debugging and research on Java’s SimpleDateFormat for date validation and BufferedReader/BufferedWriter for file handling.
-
--------------------------
-## Ongoing Future Improvements
-
-   - Enhance User Interface:
-          Add more advanced features such as a graphical user interface (GUI) with Java Swing or JavaFX for a more user-friendly experience.
-
-   - Advanced Data Management:
-          Implement a database for storing tasks to manage larger datasets and provide more robust data handling options.
- 
-   - Add Reminders and Notifications:
-          Integrate a notification system for upcoming task deadlines or reminders.
-
-          
-------------------------------------------
+----------TJ---------------
