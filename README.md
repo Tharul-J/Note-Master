@@ -2,7 +2,6 @@
   🔖  Note Master  📙
 -------------------------
 
-
 --------
 - NoteMaster is a simple Java application for managing a to-do list with tasks and associated dates. NoteMaster introduces features to add, edit, remove, view, and filter tasks, along with data persistence using file handling. The application provides a simple and effective way to keep track of tasks and their deadlines.
 
